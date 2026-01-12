@@ -2,7 +2,7 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="385.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="385.png" type="image/png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>杨芸 | 个人主页</title>
 
@@ -10,224 +10,213 @@
       async
       src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
     ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
 
     <style>
-      /* 1. 全局设置：增加平滑过渡效果 (Transition) */
+      :root {
+        --primary-gradient: linear-gradient(135deg, #6dd5ed 0%, #2193b0 100%);
+        --card-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+        --text-color: #2c3e50;
+        --text-muted: #546e7a; /* 加深了颜色，确保可读性 */
+      }
+
       * {
         box-sizing: border-box;
+        transition: all 0.3s ease;
       }
+
       body {
         margin: 0;
         padding: 0;
-        background-color: #f0f4f8;
-        font-family: "Helvetica Neue", Helvetica, "PingFang SC",
-          "Microsoft YaHei", Arial, sans-serif;
+        background-color: #f4f7f9;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
         display: flex;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
-        color: #333;
-        /* 禁止文本选中，增加整体美观性 (可选) */
-        user-select: none;
+        color: var(--text-color);
+        user-select: text;
       }
 
-      /* 2. 卡片容器：增加悬停“抬升”效果 */
       .card {
         background-color: white;
-        width: 100%;
-        max-width: 400px;
-        border-radius: 20px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 380px;
+        border-radius: 24px;
+        box-shadow: var(--card-shadow);
         overflow: hidden;
-        text-align: center;
-        padding-bottom: 30px;
-        margin: 20px;
-
-        /* 关键代码：平滑过渡 */
-        transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
-          box-shadow 0.4s ease;
       }
 
       .card:hover {
-        /* 鼠标悬停时向上抬升 5px */
-        transform: translateY(-5px);
-        /* 增加阴影，增强立体感 */
-        box-shadow: 0 18px 35px rgba(0, 0, 0, 0.18);
+        transform: translateY(-8px);
       }
 
-      /* --- 头部背景 --- */
       .header-section {
-        background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
-        padding: 40px 20px;
+        background: var(--primary-gradient);
+        height: 130px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
       }
 
-      /* --- 头像 --- */
+      .avatar-wrapper {
+        position: relative;
+        bottom: -40px;
+      }
+
       .avatar {
-        width: 120px;
-        height: 120px;
+        width: 100px;
+        height: 100px;
         border-radius: 50%;
         object-fit: cover;
         border: 4px solid white;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-      }
-      .avatar:hover {
-        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       }
 
-      /* --- 内容区域 --- */
       .content {
-        padding: 30px 40px;
-      } /* 增加左右内边距，让内容更集中 */
+        padding: 55px 30px 30px;
+        text-align: center;
+      }
 
       h1 {
-        font-size: 28px; /* 标题字号略微加大 */
-        margin-bottom: 5px;
-        color: #2c3e50;
+        font-size: 24px;
+        margin: 10px 0;
+        color: var(--text-color);
       }
 
       .intro-text {
-        color: #555;
-        line-height: 1.8;
-        font-size: 16px;
+        color: #607d8b;
+        line-height: 1.6;
+        font-size: 15px;
         margin-bottom: 30px;
       }
 
-      /* --- 按钮组样式 --- */
       .button-group {
-        display: flex;
-        flex-direction: column;
-        gap: 15px; /* 增加按钮间距 */
-        margin: 25px 0;
+        display: grid;
+        gap: 15px;
+        margin-bottom: 30px;
       }
 
-      /* 漂亮的按钮样式 */
       .btn {
-        display: inline-block;
-        padding: 12px 25px; /* 按钮填充略微加大 */
-        background-color: #4a90e2;
-        color: white;
-        text-decoration: none;
-        border-radius: 25px;
+        padding: 14px;
+        border-radius: 14px;
         font-size: 15px;
-        font-weight: 600; /* 字体加粗 */
-        transition: background-color 0.3s, box-shadow 0.3s;
-      }
-
-      .btn:hover {
-        background-color: #357abd;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 悬停时添加阴影 */
-      }
-
-      .btn-outline {
-        background-color: transparent;
-        border: 2px solid #4a90e2; /* 边框略微加粗 */
-        color: #4a90e2;
-      }
-
-      .btn-outline:hover {
-        background-color: #e3f2fd;
-        color: #357abd;
-      }
-
-      /* --- 音乐播放器样式 --- */
-      audio {
-        width: 100%;
-        margin-top: 15px;
-        height: 35px;
-      }
-
-      /* --- 底部区域 --- */
-      .date {
-        font-size: 14px;
-        color: #999;
-        margin-top: 20px;
-        border-top: 1px solid #eee;
-        padding-top: 15px;
-      }
-
-      .footer {
-        margin-top: 10px;
-        font-size: 12px;
-        color: #888;
+        font-weight: 600;
+        text-decoration: none;
         display: flex;
-        flex-direction: column;
         align-items: center;
+        justify-content: center;
         gap: 10px;
       }
 
-      /* 优化统计行，增加虚线分隔 */
-      .view-count {
-        font-size: 13px;
-        color: #aaa;
-        width: 80%;
-        border-top: 1px dashed #ddd; /* 虚线分隔 */
-        padding-top: 15px;
-        margin-bottom: 5px;
+      .btn-primary {
+        background-color: #2193b0;
+        color: white;
       }
 
-      .footer-site-name {
-        font-size: 16px; /* 网站名称更突出 */
-        font-weight: bold;
-        color: #555;
-        letter-spacing: 1px;
+      .btn-primary:hover {
+        background-color: #1a7a94;
+        box-shadow: 0 5px 15px rgba(33, 147, 176, 0.3);
+      }
+
+      .btn-outline {
+        border: 2px solid #2193b0;
+        color: #2193b0;
+      }
+
+      .btn-outline:hover {
+        background-color: #f0faff;
+      }
+
+      /* 底部信息区 */
+      .footer {
+        padding-top: 20px;
+        border-top: 1px solid #edf2f7;
+      }
+
+      /* 加深了颜色 */
+      .date-location {
+        font-size: 13px;
+        color: var(--text-muted);
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+
+      .view-count {
+        font-size: 13px;
+        color: var(--text-muted);
+        margin-bottom: 15px;
+      }
+
+      .footer-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .footer-brand span {
+        font-weight: 800;
+        font-size: 14px;
+        color: #94a3b8;
+        letter-spacing: 2px;
       }
 
       .footer-icon {
-        width: 40px;
-        height: auto;
-        display: block;
+        width: 32px;
+        opacity: 0.7;
       }
     </style>
   </head>
   <body>
     <div class="card">
       <div class="header-section">
-        <img
-          src="https://tse4.mm.bing.net/th/id/OIP.IsjAjPv_H0zVMNkrCtyrkwHaK9?w=649&h=960&rs=1&pid=ImgDetMain&o=7&rm=3"
-          alt="杨芸的头像"
-          class="avatar"
-        />
+        <div class="avatar-wrapper">
+          <img
+            src="https://tse4.mm.bing.net/th/id/OIP.IsjAjPv_H0zVMNkrCtyrkwHaK9?w=649&h=960&rs=1&pid=ImgDetMain&o=7&rm=3"
+            alt="杨芸的头像"
+            class="avatar"
+          />
+        </div>
       </div>
 
       <div class="content">
-        <h1>你好，我是杨芸</h1>
+        <h1>杨芸</h1>
         <div class="intro-text">
-          <p>欢迎来到我的个人小站。</p>
-          <p>我是一名正在探索Web世界的初学者。</p>
+          👋 你好！我是杨芸。<br />
+          正在探索 Web 世界的无限可能。
         </div>
 
         <div class="button-group">
-          <a href="resume.pdf" target="_blank" class="btn">📄 查看我的简历</a>
-          <a href="mailto:your-email@example.com" class="btn btn-outline"
-            >✉️ 给我留言 (邮件)</a
-          >
+          <a href="resume.pdf" target="_blank" class="btn btn-primary">
+            <i class="fa-solid fa-file-pdf"></i> 查看个人简历
+          </a>
+          <a href="mailto:your-email@example.com" class="btn btn-outline">
+            <i class="fa-solid fa-envelope"></i> 发送电子邮件
+          </a>
         </div>
 
-        <div style="margin-top: 20px">
-          <div style="font-size: 12px; color: #999; margin-bottom: 5px">
-            🎵 背景音乐
+        <div class="footer">
+          <div class="date-location">
+            <i class="fa-solid fa-location-dot"></i> 中国 · 香港 · 2026年1月
           </div>
-          <audio
-            controls
-            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Classical_flute_improv.mp3"
-          >
-            您的浏览器不支持音频播放。
-          </audio>
+
+          <div class="view-count">
+            <span id="busuanzi_container_site_pv">
+              <i class="fa-solid fa-chart-line"></i> 访客总量:
+              <span id="busuanzi_value_site_pv">--</span> 次
+            </span>
+          </div>
+
+          <div class="footer-brand">
+            <span>YANG YUN</span>
+            <img src="385.png" alt="图标" class="footer-icon" />
+          </div>
         </div>
-
-        <div class="date">2025年11月 · 香港</div>
-      </div>
-
-      <div class="footer">
-        <div class="view-count">
-          <span id="busuanzi_container_site_pv" style="display: none">
-            本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
-          </span>
-        </div>
-
-        <strong class="footer-site-name">杨芸的网站</strong>
-        <img src="385.png" alt="图标" class="footer-icon" />
       </div>
     </div>
   </body>
